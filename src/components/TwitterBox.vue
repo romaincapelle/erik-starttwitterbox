@@ -2,10 +2,15 @@
   <div>
     <h1>Project Twitter Box Client</h1>
     <div class="box">
-      <textarea type="text" v-model="tweet" />
+      <textarea type="text" v-model="tweet" maxlength="350" />
       <button @click="sendTweet">Tweeter</button>
       <div class="count">
-        <p>{{ remainingLetterCount }}/280</p>
+        <p>
+          <span :class="{ textAlert: tweetTooLong }">{{
+            remainingLetterCount
+          }}</span
+          >/280
+        </p>
       </div>
     </div>
     <div class="alert" v-if="tweetTooLong">
@@ -80,10 +85,13 @@ export default {
 }
 .alert {
   width: 33%;
-  margin: 0 auto;
-  color: white;
-  background: red;
-  padding: 20px 20px;
+  margin: 20px auto 20px auto;
+  color: #fff;
+  background: #e23568;
+  padding: 20px 0px;
+}
+.textAlert {
+  color: #e23568;
 }
 button {
   margin-left: 20px;
